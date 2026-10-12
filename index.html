@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>चवीपुरते ‘मीठ’</title>
+
+  <!-- Google Fonts: IBM Plex Sans Devanagari and IBM Plex Sans (strictly weight 400 & italic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:ital,wght@0,400;1,400&family=IBM+Plex+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            devanagari: ['"IBM Plex Sans Devanagari"', '"IBM Plex Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict font-family, word protection, and global non-bold enforcement */
+    *, *::before, *::after {
+      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    body {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+      -webkit-hyphens: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Justified body paragraphs with increased font size and line height */
+    .essay-body p {
+      text-align: justify;
+      text-justify: inter-word;
+      font-size: 1.25rem;
+      line-height: 1.95;
+    }
+
+    @media (max-width: 640px) {
+      .essay-body p {
+        font-size: 1.15rem;
+        line-height: 1.88;
+      }
+    }
+
+    /* Specific highlight styling: centered, italic, distinctive accent color */
+    .highlight-quote {
+      text-align: center !important;
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.8;
+      color: #C2410C;
+    }
+
+    .dark .highlight-quote {
+      color: #FB923C;
+    }
+
+    @media (max-width: 640px) {
+      .highlight-quote {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* SVG Salt Crystal Glow and Float Animations */
+    @keyframes crystalSparkle {
+      0%, 100% {
+        transform: translateY(0px) scale(1) rotate(0deg);
+        opacity: 0.85;
+      }
+      50% {
+        transform: translateY(-6px) scale(1.08) rotate(6deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes crystalPulse {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 0 4px rgba(251, 146, 60, 0.3));
+      }
+      50% {
+        transform: translateY(-4px) scale(1.06);
+        filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
+      }
+    }
+
+    @keyframes saltPinchDrop {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.95;
+      }
+      60% {
+        transform: translateY(12px) rotate(30deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(22px) rotate(60deg);
+        opacity: 0;
+      }
+    }
+
+    .anim-crystal-1 {
+      animation: crystalSparkle 4.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .anim-crystal-2 {
+      animation: crystalSparkle 5.4s ease-in-out 1.5s infinite;
+      transform-origin: center;
+    }
+
+    .anim-pulse {
+      animation: crystalPulse 4.8s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .grain-drop-a {
+      animation: saltPinchDrop 2.5s linear infinite;
+    }
+
+    .grain-drop-b {
+      animation: saltPinchDrop 3.0s linear 0.7s infinite;
+    }
+
+    .grain-drop-c {
+      animation: saltPinchDrop 2.7s linear 1.4s infinite;
+    }
+
+    .toast-transition {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+  </style>
+</head>
+<body class="bg-[#FAF7EE] text-[#2A241E] dark:bg-[#121417] dark:text-[#E6E4DF] antialiased min-h-screen">
+
+  <!-- Floating Theme Toggle Button -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="themeToggle" aria-label="थीम बदला" class="p-2.5 rounded-full bg-white/90 dark:bg-stone-800/90 backdrop-blur border border-stone-200/90 dark:border-stone-700/80 shadow-sm text-stone-700 dark:text-stone-300 hover:scale-105 active:scale-95 transition-transform focus:outline-none cursor-pointer">
+      <svg id="sunIcon" class="w-5 h-5 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+      </svg>
+      <svg id="moonIcon" class="w-5 h-5 block dark:hidden text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <main class="w-full max-w-3xl mx-auto px-5 sm:px-8 py-10 sm:py-16">
+    <article class="bg-white/80 dark:bg-[#1C1F26]/90 backdrop-blur-sm border border-stone-200/80 dark:border-stone-800/90 rounded-3xl p-6 sm:p-12 shadow-sm">
+
+      <!-- Title: Centered, strictly non-bold -->
+      <h1 class="text-center text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 leading-tight mb-3">
+        चवीपुरते ‘मीठ’
+      </h1>
+
+      <!-- Subtitle: Centered, italic, strictly non-bold -->
+      <p class="text-center italic text-lg sm:text-xl text-stone-600 dark:text-stone-300 leading-relaxed mb-6">
+        हे लवण-स्फटिक अन्नाची चव राखणारे असतात.
+      </p>
+
+      <div class="my-6 flex justify-center items-center">
+        <div class="w-full max-w-md p-4 rounded-2xl bg-gradient-to-b from-amber-50/50 via-sky-50/30 to-rose-50/30 dark:from-stone-900/40 dark:via-stone-900/20 dark:to-stone-800/20 border border-stone-200/50 dark:border-stone-800/60 flex justify-center">
+          <svg class="w-full max-h-56 select-none" viewBox="0 0 420 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="लवण-स्फटिक आणि चिमूटभर मीठ">
+            <defs>
+              <linearGradient id="silverCellar" x1="130" y1="120" x2="290" y2="190" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#E2E8F0" />
+                <stop offset="50%" stop-color="#CBD5E1" />
+                <stop offset="100%" stop-color="#94A3B8" />
+              </linearGradient>
+              <linearGradient id="saltHeap" x1="150" y1="90" x2="270" y2="140" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="50%" stop-color="#F8FAFC" />
+                <stop offset="100%" stop-color="#E2E8F0" />
+              </linearGradient>
+              <linearGradient id="himalayanRose" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FB7185" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.85" />
+              </linearGradient>
+              <linearGradient id="persianAzure" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#6366F1" stop-opacity="0.85" />
+              </linearGradient>
+              <linearGradient id="amberGlow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FDE047" />
+                <stop offset="100%" stop-color="#F59E0B" />
+              </linearGradient>
+              <radialGradient id="softAura" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FEF3C7" stop-opacity="0.45" />
+                <stop offset="60%" stop-color="#E0E7FF" stop-opacity="0.2" />
+                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+
+            <!-- Background soft glow -->
+            <ellipse cx="210" cy="115" rx="160" ry="85" fill="url(#softAura)" />
+
+            <!-- Silver Cellar & Salt Mound -->
+            <g class="anim-pulse">
+              <ellipse cx="210" cy="166" rx="98" ry="20" fill="#64748B" fill-opacity="0.16" />
+              <path d="M130 126 C130 170 290 170 290 126 Z" fill="url(#silverCellar)" stroke="#CBD5E1" stroke-width="1.2" />
+              <ellipse cx="210" cy="126" rx="80" ry="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
+              <ellipse cx="210" cy="123" rx="72" ry="13" fill="url(#saltHeap)" />
+            </g>
+
+            <!-- Glistening white crystal particles -->
+            <circle cx="174" cy="122" r="2.2" fill="#FFFFFF" />
+            <circle cx="195" cy="120" r="1.8" fill="#FFFFFF" />
+            <circle cx="225" cy="124" r="2.4" fill="#FFFFFF" />
+            <circle cx="246" cy="121" r="2.0" fill="#FFFFFF" />
+
+            <!-- Falling pinch of salt (चिमूटभर मीठ) -->
+            <g>
+              <path class="grain-drop-a" d="M208 65 L212 60 L216 65 L212 70 Z" fill="url(#himalayanRose)" />
+              <polygon class="grain-drop-b" points="202,78 206,75 208,80 204,82" fill="#FFFFFF" stroke="#93C5FD" stroke-width="0.8" />
+              <polygon class="grain-drop-c" points="214,84 219,83 218,89 213,88" fill="url(#persianAzure)" />
+              <circle cx="211" cy="98" r="1.6" fill="#F8FAFC" class="grain-drop-a" />
+              <circle cx="206" cy="106" r="1.4" fill="#FDBA74" class="grain-drop-b" />
+              <circle cx="215" cy="112" r="1.5" fill="#93C5FD" class="grain-drop-c" />
+            </g>
+
+            <!-- Pink Himalayan Saindhav Crystal Facet -->
+            <g class="anim-crystal-1">
+              <polygon points="106,84 122,70 134,86 127,104 109,98" fill="url(#himalayanRose)" />
+              <polygon points="122,70 134,86 127,104" fill="#FFFFFF" opacity="0.35" />
+              <polyline points="106,84 127,87 134,86" stroke="#FFE4E6" stroke-width="0.9" />
+            </g>
+
+            <!-- Persian Azure Crystal Facet -->
+            <g class="anim-crystal-2">
+              <polygon points="304,75 321,59 333,77 323,96 307,90" fill="url(#persianAzure)" />
+              <polygon points="321,59 333,77 323,96" fill="#FFFFFF" opacity="0.35" />
+              <polyline points="304,75 321,79 333,77" stroke="#E0F2FE" stroke-width="0.9" />
+            </g>
+
+            <!-- Golden Amber Sunburst Facet -->
+            <g class="anim-crystal-1">
+              <polygon points="210,32 216,42 226,45 218,52 220,62 210,56 200,62 202,52 194,45 204,42" fill="url(#amberGlow)" opacity="0.9" />
+            </g>
+
+            <!-- Colorful Ambient Sparkles -->
+            <path class="anim-crystal-2" d="M85 55 Q95 55 95 45 Q95 55 105 55 Q95 55 95 65 Q95 55 85 55 Z" fill="#F59E0B" opacity="0.8" />
+            <path class="anim-crystal-1" d="M336 48 Q344 48 344 40 Q344 48 352 48 Q344 48 344 56 Q344 48 336 48 Z" fill="#38BDF8" opacity="0.8" />
+            <circle cx="152" cy="58" r="2.2" fill="#F472B6" opacity="0.75" class="anim-crystal-1" />
+            <circle cx="270" cy="52" r="2.6" fill="#60A5FA" opacity="0.75" class="anim-crystal-2" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="essay-body space-y-6 text-stone-800 dark:text-stone-200">
+        <p>
+          सोडियम आणि क्लोरीन ही दोन मूलद्रव्ये एकत्र येऊन तयार होणाऱ्या संयुगाला शास्त्रीय परिभाषेत सोडियम क्लोराईड (NaCl) म्हणले जात असले तरी तो पदार्थ ‘मीठ’ या नावाने सर्वश्रुत आहे.
+        </p>
+
+        <p>
+          खडे मीठ, शेंदेलोण, सैंधव, पादेलोण, काळे-मीठ, बिडलोण, रोमक, पांसुज ही ‘लवणे’ भारतात आणि फ्रेंच ग्रे सॉल्ट, हवाईयन रेड सी सॉल्ट, एक्स्प्रेसो सॉल्ट, पर्शिअन ब्लू सॉल्ट ही ‘सॉल्ट्स’ जगभरात इतरत्र त्यांच्या विशिष्ठ गुणधर्मांसाठी प्रसिद्ध आहेत. आधुनिक ‘डायट’ मधे आयोडाईज्ड सॉल्ट आणि जाहिरातीमुळे प्रसिद्ध ‘नमक हो टाटा का, टाटा नमक’ अर्थात ‘टाटांचे मीठ – देशाचे मीठ’ आबालवृद्धांच्या भाषेत ‘फ्री फ्लोइंग’ सॉल्ट आहे.
+        </p>
+
+        <p>
+          अल्प प्रमाणातील मीठ प्राणिजीवनास आवश्यक असते, मात्र अति प्रमाणातील मीठ हानिकारक असते हे तर आहेच पण रोजच्या भोजनातील आणि एकंदरीत सर्वच अन्नपदार्थातील त्याचे महत्व काय वर्णावे!
+        </p>
+
+        <p>
+          उजवी-डावीकडील चटण्या-भाज्या-कोशिंबीरी, साजूक तूप, लिंबाची फोड, पोळी, मागचा-पुढचा भात व पापड-लोणाच्याने सजवलेल्या, रांगोळीच्या मखरात मांडलेल्या, चांदीच्या ताटातील किंवा केळीच्या पानावरील सुग्रास भोजन असो वा हारीने मांडलेला पंचतारांकित बुफे; त्यात मीठ पडावे लागते ‘चवीपुरते चिमूटभर’च, पण सुगरणीचा किंवा महाराजाच्या चिमटीचा अंदाज चुकला तर सगळ्या पंगतीचा अळणी किंवा खारट विरस होतो. दूध आणि मीठ यांचे तसे एकमेकांशी वाकडे असले तरी ताकात आणि श्रीखंडात घातलेले किंचित मीठ त्यांना एक वेगळीच टेस्ट देऊन जाते.
+        </p>
+
+        <div class="py-3 text-center select-none">
+          <div class="text-xl sm:text-2xl text-amber-700/70 dark:text-amber-400/80 tracking-widest my-2">✧✧✧</div>
+          <p class="highlight-quote my-4 px-4">
+            तर असे हे लवण-स्फटिक अन्नाची चव राखणारे असतात.
+          </p>
+          <div class="text-xl sm:text-2xl text-amber-700/70 dark:text-amber-400/80 tracking-widest my-2">✧✧✧</div>
+        </div>
+
+        <p>
+          आपल्या प्रत्येकाच्या आत एक ‘मी(ठ)’ असते. निसर्गतः ‘उप्परवाल्या’ने ते ‘स्वाभिमानापुरते चिमूटभर’च घातलेले असते. पण आपल्याच वागणुकीने त्या ‘क्षारा’ला जर ‘च’ चिकटला तर मीच, माझेच, मलाच होऊन अहंकार वाढतो आणि आपली ‘चव’ आप्त-स्वकीय, मैत्र आणि आजूबाजूच्या सर्वांना खारट लागायला लागते. याउलट या ‘मी’ ला जर मला काही येत नाही, जमतच नाही या न्यून‘गंडा’ची बाधा झाली तर व्यक्तिमत्व निस्तेज होते व ‘टेस्ट’ अगदीच अळणी होऊन जाते.
+        </p>
+
+        <p>
+          थोडक्यात काय तर आपल्या आतले मीठ ‘चवीपुरते चिमूटभर’ म्हणजे स्वाभिमान जपण्याइतकेच असणे श्रेयस्कर असते. चांगल्या सवयी, नियमित साधना आणि मनाचिये ठायी असलेला कृतज्ञतेचा भाव हे नैसर्गिक लावण्य अबाधित ठेवायला मदत करतात.
+        </p>
+
+        <p>
+          इतके क्षारमहात्म्य सांगून झाल्यावर भोजनोत्तर म्हणल्या जाणाऱ्या ‘अन्नदाता सुखी भवः’ या उक्तीनुसार आप्तस्वकीय आणि मैत्र यांच्यासाठी चिमूटभर पण पुरेशी आणि इतर सर्वांसाठी ‘टेस्ट से भरपूर’ कृतज्ञता व्यक्त करून हा निबंध अवास्तव शब्दविस्ताराने खारट होण्यापूर्वी आटोपता घेतो.
+        </p>
+
+        <!-- Concluding separators, date, and final symbol strictly centered -->
+        <div class="pt-6 pb-2 text-center select-none space-y-2">
+          <div class="text-xl sm:text-2xl text-amber-700/70 dark:text-amber-400/80 tracking-widest">✧✧✧</div>
+          <div class="text-lg text-stone-600 dark:text-stone-400 tracking-wider">२०२५०८०५</div>
+          <div class="text-xl text-amber-700/70 dark:text-amber-400/80">✧</div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-stone-200/80 dark:border-stone-800 flex justify-center">
+        <button id="shareButton" class="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-base bg-stone-800 hover:bg-stone-900 text-stone-50 dark:bg-stone-700 dark:hover:bg-stone-600 shadow-sm transition-all duration-200 active:scale-95 focus:outline-none cursor-pointer">
+          <svg class="w-5 h-5 text-stone-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+          </svg>
+          <span>शेअर करा</span>
+        </button>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Share Toast Notification -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-stone-900/90 dark:bg-stone-100/90 text-stone-100 dark:text-stone-900 text-sm shadow-xl pointer-events-none opacity-0 translate-y-4 toast-transition">
+    लिंक कॉपी झाली!
+  </div>
+
+  <script>
+    (function() {
+      /* Theme persistence and toggle */
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const htmlEl = document.documentElement;
+
+      const userTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (userTheme === 'dark' || (!userTheme && systemDark)) {
+        htmlEl.classList.add('dark');
+      } else {
+        htmlEl.classList.remove('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', function() {
+        if (htmlEl.classList.contains('dark')) {
+          htmlEl.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlEl.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      /* Share button functionality */
+      const shareButton = document.getElementById('shareButton');
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+
+      function triggerToast(text) {
+        toast.textContent = text;
+        toast.classList.remove('opacity-0', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'translate-y-4');
+        }, 2500);
+      }
+
+      function fallbackShare() {
+        const temp = document.createElement('input');
+        temp.style.position = 'absolute';
+        temp.style.left = '-9999px';
+        temp.value = window.location.href;
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand('copy');
+          triggerToast('लिंक क्लिपबोर्डवर कॉपी झाली!');
+        } catch (e) {
+          triggerToast('लिंक शेअर करता आली नाही');
+        }
+        document.body.removeChild(temp);
+      }
+
+      shareButton.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: 'चवीपुरते ‘मीठ’',
+            text: 'चवीपुरते ‘मीठ’ - हे लवण-स्फटिक अन्नाची चव राखणारे असतात.',
+            url: window.location.href
+          }).catch(err => {
+            if (err.name !== 'AbortError') fallbackShare();
+          });
+        } else {
+          fallbackShare();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
